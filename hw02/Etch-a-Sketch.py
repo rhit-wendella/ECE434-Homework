@@ -69,24 +69,32 @@ while True:
     # Up
     if GPIO.input("P9_11") == 1:
         y=y-1
+        x=x%xMax
+        y=y%yMax
         grid[y][x] = "+"
         printGrid()
         time.sleep(0.2)
     # Down
     elif GPIO.input("P9_13") == 1:
         y=y+1
+        x=x%xMax
+        y=y%yMax
         grid[y][x] = "+"
         printGrid()
         time.sleep(0.2)
     # Left
     elif GPIO.input("P9_17") == 1:
         x=x-1
+        x=x%xMax
+        y=y%yMax
         grid[y][x] = "+"
         printGrid()
         time.sleep(0.2)
     # Right
     elif GPIO.input("P9_19") == 1:
         x=x+1
+        x=x%xMax
+        y=y%yMax
         grid[y][x] = "+"
         printGrid()
         time.sleep(0.2)
@@ -97,8 +105,6 @@ while True:
     #else:
      #   print("I don't quite understand")
     # Mod the position to make sure it can loop around the grid
-    x=x%xMax
-    y=y%yMax
     # Move cursor to current position
     
     # Print Grid
