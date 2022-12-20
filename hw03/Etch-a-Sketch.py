@@ -11,19 +11,23 @@ yMax = 8
 xMax = 8
 
 # Set up the buttons
-GPIO.setup("P9_11", GPIO.IN)
-GPIO.setup("P9_13", GPIO.IN)
-GPIO.setup("P9_17", GPIO.IN)
-GPIO.setup("P9_19", GPIO.IN)
+# GPIO.setup("P9_11", GPIO.IN)
+# GPIO.setup("P9_13", GPIO.IN)
+# GPIO.setup("P9_17", GPIO.IN)
+# GPIO.setup("P9_19", GPIO.IN)
 
-GPIO.cleanup()
+# GPIO.cleanup()
 
 bus = smbus.SMBus(2)
 matrix_address = 0x70
 # set up the LED led_matrix
+time.sleep(0.5)
 bus.write_byte_data(matrix_address, 0x21, 0)
+time.sleep(0.5)
 bus.write_byte_data(matrix_address, 0x81, 0)
+time.sleep(0.5)
 bus.write_byte_data(matrix_address, 0xe7, 0)
+time.sleep(0.5)
 
 left = '1'
 right = '2'
