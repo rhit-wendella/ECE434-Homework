@@ -1,11 +1,10 @@
-# ece434HW 
-> for the ECE434 homework
+# ece434 HW04
 
-## 1. HW1: Etch-a-sketch
-- Status: done 
-- Up - 'w'; Down - 's'; Left - 'a'; Right - 'd'; Clear - 'c'; Exit - esc
 
-## 2. HW2: gpio speed
+## 1. Etch-a-sketch
+- Go to the link that pulls up when you run the Etch-a-Sketch.py code
+
+## 2. gpio speed
 1. What's the min and max voltage?
     3.343V, 0V
 2. What period and frequency is it?
@@ -34,3 +33,9 @@
 11. What's the shortest period you can get?
     35 ms
 
+## 3. i2c via the Kernel Driver
+- Got the temperature to be read
+- run the kernel_temp.sh file
+
+## 4. LCD
+- Got a picture, video, and text to appear
