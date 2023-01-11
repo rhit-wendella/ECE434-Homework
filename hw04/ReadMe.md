@@ -39,3 +39,19 @@
 
 ## 4. LCD
 - Got a picture, video, and text to appear
+
+# hw04 grading
+
+| Points      | Description | |
+| ----------- | ----------- | - |
+|  0/2 | Memory map | *Missing*
+|  0/4 | mmap() | *Missing*
+|  4/4 | i2c via Kernel
+|  5/5 | Etch-a-Sketch via flask
+|  5/5 | LCD display
+|      | Extras
+| 14/20 | **Total**
+*Your part 2 looks like it's from hw03*
+
+*My comments are in italics. --may*
+
