@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Luke Wendel 12/13/22
+# Luke Wendel 01/16/23
 
 import sys
 import Adafruit_BBIO.GPIO as GPIO
@@ -25,7 +25,7 @@ time.sleep(0.5)
 bus.write_byte_data(matrix_address, 0xe7, 0)
 time.sleep(0.5)
 
-
+# Run the Accelerometor helper file
 adxl345 = ADXL345()
 
 
@@ -64,16 +64,12 @@ led_update(grid)
 
 while True:
     # Figure out what direction to go
-    #answer = input("What direction would you likue? (u, d, l, r) ")
-    
-    # Mark spot that the player just left
     
     grid[y][x] = "*"
+    # Get the axes values from the accelerometer
     axes = adxl345.getAxes(True)
     # Up
     if axes['y'] < -0.1:
-        print(axes['y'])
-        print(axes['x'])
         y=y+1
         x=x%xMax
         y=y%yMax
@@ -82,8 +78,6 @@ while True:
         time.sleep(0.2)
     # Down
     elif axes['y'] > 0.1:
-        print(axes['y'])
-        print(axes['x'])
         y=y-1
         x=x%xMax
         y=y%yMax
