@@ -1,3 +1,4 @@
+# From http://www.electronicprojects.net/python/beaglebone-and-adxl345-example-in-python.php by electronicsguy
 import smbus
 from time import sleep
 

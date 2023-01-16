@@ -8,6 +8,7 @@
  * is no requirement for a custom overlay, as the pins are in their default mux mode states.
  * @see http://www.derekmolloy.ie/
 */
+// Modified by Luke Wendel on 1/15/23
 
 #include <linux/init.h>
 #include <linux/module.h>
@@ -20,9 +21,9 @@ MODULE_AUTHOR("Derek Molloy");
 MODULE_DESCRIPTION("A Button/LED test driver for the BBB");
 MODULE_VERSION("0.1");
 
-static unsigned int gpioLED = 26;       ///< hard coding the LED gpio for this example to P9_23 (GPIO49)
+static unsigned int gpioLED = 26;       ///< hard coding the LED gpios
 static unsigned int gpioLED2 = 23;
-static unsigned int gpioButton = 44;   ///< hard coding the button gpio for this example to P9_27 (GPIO115)
+static unsigned int gpioButton = 44;   ///< hard coding the button gpios
 static unsigned int gpioButton2 = 45;
 static unsigned int irqNumber;          ///< Used to share the IRQ number within this file
 static unsigned int irqNumber2; 
@@ -52,23 +53,23 @@ static int __init ebbgpio_init(void){
       printk(KERN_INFO "GPIO_TEST: invalid LED GPIO\n");
       return -ENODEV;
    }
-   // Going to set up the LED. It is a GPIO in output mode and will be on by default
+   // Going to set up the LEDs. It is a GPIO in output mode and will be on by default
    ledOn = true;
    ledOn2 = true;
-   gpio_request(gpioLED, "sysfs");          // gpioLED is hardcoded to 49, request it
+   gpio_request(gpioLED, "sysfs");          // gpioLEDs are hardcoded, request it
    gpio_request(gpioLED2, "sysfs");
-   gpio_direction_output(gpioLED, ledOn);   // Set the gpio to be in output mode and on
+   gpio_direction_output(gpioLED, ledOn);   // Set the gpios to be in output mode and on
    gpio_direction_output(gpioLED2, ledOn2);
 // gpio_set_value(gpioLED, ledOn);          // Not required as set by line above (here for reference)
-   gpio_export(gpioLED, false);             // Causes gpio49 to appear in /sys/class/gpio
+   gpio_export(gpioLED, false);             // Causes gpios to appear in /sys/class/gpio
 	gpio_export(gpioLED2, false);		                    // the bool argument prevents the direction from being changed
-   gpio_request(gpioButton, "sysfs");       // Set up the gpioButton
+   gpio_request(gpioButton, "sysfs");       // Set up the gpioButtons
    gpio_request(gpioButton2, "sysfs");
-   gpio_direction_input(gpioButton);        // Set the button GPIO to be an input
+   gpio_direction_input(gpioButton);        // Set the button GPIOs to be an inputs
    gpio_direction_input(gpioButton2);
-   gpio_set_debounce(gpioButton, 200);      // Debounce the button with a delay of 200ms
+   gpio_set_debounce(gpioButton, 200);      // Debounce the buttons with a delay of 200ms
    gpio_set_debounce(gpioButton2, 200);
-   gpio_export(gpioButton, false);          // Causes gpio115 to appear in /sys/class/gpio
+   gpio_export(gpioButton, false);          // Causes gpios to appear in /sys/class/gpio
 	gpio_export(gpioButton2, false);		                    // the bool argument prevents the direction from being changed
    // Perform a quick test to see that the button is working as expected on LKM load
    printk(KERN_INFO "GPIO_TEST: The button state is currently: %d\n", gpio_get_value(gpioButton));
@@ -103,17 +104,17 @@ static void __exit ebbgpio_exit(void){
    printk(KERN_INFO "GPIO_TEST: The button state is currently: %d\n", gpio_get_value(gpioButton));
    printk(KERN_INFO "GPIO_TEST: The button state is currently: %d\n", gpio_get_value(gpioButton2));
    printk(KERN_INFO "GPIO_TEST: The button was pressed %d times\n", numberPresses);
-   gpio_set_value(gpioLED, 0);              // Turn the LED off, makes it clear the device was unloaded
+   gpio_set_value(gpioLED, 0);              // Turn the LEDs off, makes it clear the device was unloaded
    gpio_set_value(gpioLED2, 0); 
    gpio_unexport(gpioLED);
-   gpio_unexport(gpioLED2);                  // Unexport the LED GPIO
-   free_irq(irqNumber, NULL);               // Free the IRQ number, no *dev_id required in this case
+   gpio_unexport(gpioLED2);                  // Unexport the LED GPIOs
+   free_irq(irqNumber, NULL);               // Free the IRQ numbers, no *dev_id required in this case
    free_irq(irqNumber2, NULL); 
-   gpio_unexport(gpioButton);               // Unexport the Button GPIO
+   gpio_unexport(gpioButton);               // Unexport the Button GPIOs
    gpio_unexport(gpioButton2);
-   gpio_free(gpioLED);                      // Free the LED GPIO
+   gpio_free(gpioLED);                      // Free the LED GPIOs
    gpio_free(gpioLED2);
-   gpio_free(gpioButton);                   // Free the Button GPIO
+   gpio_free(gpioButton);                   // Free the Button GPIOs
    gpio_free(gpioButton2);
    printk(KERN_INFO "GPIO_TEST: Goodbye from the LKM!\n");
 }

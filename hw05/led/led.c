@@ -21,8 +21,8 @@ MODULE_AUTHOR("Derek Molloy");
 MODULE_DESCRIPTION("A simple Linux LED driver LKM for the BBB");
 MODULE_VERSION("0.1");
 
-static unsigned int gpioLED = 26;           ///< Default GPIO for the LED is 49
-static unsigned int gpioLED2 = 23;   
+static unsigned int gpioLED = 26;           ///< Default GPIO for the LED is 26
+static unsigned int gpioLED2 = 23;          ///< Default GPIO for the LED is 23 
 module_param(gpioLED, uint, S_IRUGO);       ///< Param desc. S_IRUGO can be read/not changed
 MODULE_PARM_DESC(gpioLED, " GPIO LED number (default=49)");     ///< parameter description
 
@@ -166,20 +166,20 @@ static int __init ebbLED_init(void){
    }
    ledOn = true;
    ledOn2 = true;
-   gpio_request(gpioLED, "sysfs");          // gpioLED is 49 by default, request it
-   gpio_request(gpioLED2, "sysfs");
-   gpio_direction_output(gpioLED, ledOn);   // Set the gpio to be in output mode and turn on
+   gpio_request(gpioLED, "sysfs");          // gpioLED is 23 by default, request it
+   gpio_request(gpioLED2, "sysfs");         // gpioLED is 26 by default, request it 
+   gpio_direction_output(gpioLED, ledOn);   // Set the gpios to be in output mode and turn on
    gpio_direction_output(gpioLED2, ledOn);
-   gpio_export(gpioLED, false);  // causes gpio49 to appear in /sys/class/gpio
+   gpio_export(gpioLED, false);  // causes gpio23 and 26 to appear in /sys/class/gpio
    gpio_export(gpioLED2, false);                              // the second argument prevents the direction from being changed
 
-   task = kthread_run(flash, NULL, "LED_flash_thread");  // Start the LED flashing thread
+   task = kthread_run(flash, NULL, "LED_flash_thread");  // Start the LEDs flashing thread
    task2 = kthread_run(flash2, NULL, "LED_flash_thread2");
    if(IS_ERR(task)){                                     // Kthread name is LED_flash_thread
       printk(KERN_ALERT "EBB LED: failed to create the task\n");
       return PTR_ERR(task);
    }
-   if(IS_ERR(task2)){                                     // Kthread name is LED_flash_thread
+   if(IS_ERR(task2)){                                     // Kthread name is LED_flash_thread2
       printk(KERN_ALERT "EBB LED: failed to create the task\n");
       return PTR_ERR(task);
    }
@@ -191,12 +191,12 @@ static int __init ebbLED_init(void){
  *  code is used for a built-in driver (not a LKM) that this function is not required.
  */
 static void __exit ebbLED_exit(void){
-   kthread_stop(task);                      // Stop the LED flashing thread
+   kthread_stop(task);                      // Stop the LEDs flashing thread
    kthread_stop(task2);
    kobject_put(ebb_kobj);                   // clean up -- remove the kobject sysfs entry
-   gpio_set_value(gpioLED, 0);              // Turn the LED off, indicates device was unloaded
+   gpio_set_value(gpioLED, 0);              // Turn the LEDs off, indicates device was unloaded
    gpio_set_value(gpioLED2, 0);
-   gpio_unexport(gpioLED);                  // Unexport the Button GPIO
+   gpio_unexport(gpioLED);                  // Unexport the LED GPIOs
    gpio_unexport(gpioLED2);
    gpio_free(gpioLED);                      // Free the LED GPIO
    gpio_free(gpioLED2);
