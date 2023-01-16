@@ -1,1 +1,0 @@
-cmd_/home/debian/exploringBB/extras/kernel/ebbchar/ebbchar.mod := { echo  /home/debian/exploringBB/extras/kernel/ebbchar/ebbchar.o;  echo; } > /home/debian/exploringBB/extras/kernel/ebbchar/ebbchar.mod

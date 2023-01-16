@@ -1,2 +1,0 @@
-/home/debian/ECE434-Homework/hw05/gpio_test/gpio_test.o
-
