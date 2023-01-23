@@ -21,3 +21,10 @@
   - The current executing irq isn't done. 
 11. Why can the External event in Figure 4 start sooner?  
   - Because of the few codes in the irq. This means the external thread can be worken up earlier. 
+
+## RT vs non-RT
+### Without load
+![plot](./cyclictest.png)  
+### With load
+![plot](./cyclictest_no_load.png)  
+- RT has a bounded latency of around 100us. I ran the make and make clean commands shown in exercise 36.
