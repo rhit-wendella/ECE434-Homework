@@ -14,3 +14,18 @@ I finished this section. Found a resource online that gave me code to read the a
 
 ## LED flashing at different rates
 I modified the led.c code and made it so it ran two different threads with two different LEDs. They then did have a different blinking period.
+
+# hw05 grading
+
+| Points      | Description |
+| ----------- | ----------- |
+|  0/0 | Project 
+|  2/2 | Makefile
+|  3/6 | Kernel Source | *Not finished*
+|  4/4 | Etch-a-Sketch
+|  8/8 | Kernel Modules: hello, ebbchar, gpio_test, led
+|  4/4 | Extras - Blink at different rates
+| 21/20 | **Total**
+
+*My comments are in italics. --may*
+

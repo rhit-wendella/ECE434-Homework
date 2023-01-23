@@ -50,3 +50,20 @@
 ### Change SSH Port
 
 **I changed my SSH Port to 2022 and then changed it back because of issues**
+
+# hw02 grading
+
+| Points      | Description | |
+| ----------- | ----------- |-|
+|  2/2 | Buttons and LEDs 
+|  8/8 | Etch-a-Sketch works
+|      | Measuring a gpio pin on an Oscilloscope 
+|  2/2 | Questions answered
+|  4/4 | Table complete
+|  0/2 | gpiod | *I didn't find tihs*
+|      | Security
+|  1/1 | ssh port 
+|  0/1 | fail2ban
+| 13/20   | **Total**
+
+Late: -4
