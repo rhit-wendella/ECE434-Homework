@@ -28,3 +28,17 @@
 ### With load
 ![plot](./cyclictest_no_load.png)  
 - RT has a bounded latency of around 100us. I ran the make and make clean commands shown in exercise 36.
+
+# hw06 grading
+
+| Points      | Description | |
+| ----------- | ----------- |-|
+|  2/2 | Project | *Stacker Arcade Game*
+|  4/5 | Questions | *Mainline is the main kernel tree.*
+|  4/4 | PREEMPT_RT
+|  2/2 | Plots to 500 us
+|  5/5 | Plots - Heavy/Light load | *Ithink your plots are swapped*
+|  2/2 | Extras
+| 19/20 | **Total**
+
+*My comments are in italics. --may*
