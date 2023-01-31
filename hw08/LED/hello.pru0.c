@@ -17,13 +17,13 @@ void main(void) {
 	while(1) {
 		gpio3[GPIO_SETDATAOUT]   = (1<<14);	// The the USR3 LED on
 
-		// __delay_cycles(500000000/5);    	// Wait 1/2 second
-		__delay_cycles(0);
+		 __delay_cycles(500000000/5);    	// Wait 1/2 second
+		//__delay_cycles(0);
 
 		gpio3[GPIO_CLEARDATAOUT] = (1<<14);
 
-		// __delay_cycles(500000000/5); 
-		__delay_cycles(0);
+		__delay_cycles(500000000/5); 
+		//__delay_cycles(0);
 
 	}
 	__halt();
