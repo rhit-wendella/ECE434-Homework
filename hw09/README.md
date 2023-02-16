@@ -12,3 +12,15 @@
 - Link to Sheet: https://docs.google.com/spreadsheets/d/1Cae-zzcrN9eBKBVuVuD-c7hN_qFZyAnnCfQ3QhCEokI/edit?usp=sharing
 
 ![Temp Graph](graph.png)
+
+# hw09 grading
+
+| Points      | Description | |
+| ----------- | ----------- |-|
+|  5/5 | Timeline |
+|  3/3 | MAX31820 working
+| 12/12| Logging to Sheets
+| 20/20| **Total**
+
+*My comments are in italics. --may*
+
